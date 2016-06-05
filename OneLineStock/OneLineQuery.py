@@ -21,8 +21,12 @@ from SudouTushare import TuShareAdapter
 山峰点容差：
 山峰斜角度：
 
+
+1.往前找两三个，谷点，与峰点
+
+
 '''
-class OneLineQuery(object):
+class OneLineStrategy(object):
     
     bottom_top_interval = 5 
     
@@ -50,7 +54,7 @@ class OneLineQuery(object):
 if __name__ == "__main__":
     print "start------"
     
-    oneLine = OneLineQuery()
+    oneLine = OneLineStrategy()
     data = TuShareAdapter.getHistData('300222')
     print data
     oneLine.getSectionPrice(data)

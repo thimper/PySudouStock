@@ -9,7 +9,7 @@ from pymongo import MongoClient
 import tushare as ts
 import json
 
-mongoClient = MongoClient("mongodb://mystock:123.@121.40.77.158/stock",port=27017)
+mongoClient = MongoClient("mongodb://mystock:123.@127.0.0.1/stock",port=27017)
 
 class MyMongoClient:
     @staticmethod

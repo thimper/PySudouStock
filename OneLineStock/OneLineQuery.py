@@ -4,10 +4,10 @@ Created on 2016年4月17日
 
 @author: liuxiqing
 '''
-
+import time
 from Tools import TimeTools
-from SudouTushare import TuShareAdapter
-
+from SudouTushare import TuShareAdapter as ta
+from progressbar import ProgressBar, SimpleProgress
 
 '''
 
@@ -29,15 +29,17 @@ from SudouTushare import TuShareAdapter
 class OneLineStrategy(object):
     
     bottom_top_interval = 5 
-    
+    __code = ''
+    __data = None
     '''
     OneLine
     '''
-    def __init__(self):
+    def __init__(self,code):
         '''
         Constructor
         '''
-    
+        self.__code = code
+        self.__data = ta.getHistData(self.__code)
     '''
            获取区间价格，山峰点，山谷点，
            默认处理两个时间 的    
@@ -49,13 +51,28 @@ class OneLineStrategy(object):
             end = TimeTools.get_curday()
         print "get Section Price:%s到%s" %(start,end)
         
+        print 'done'
+    
+    def getAreaPrice(self):
+        self.getSectionPrice(self.__data)
         
+    def execute(self):
+        pbar = ProgressBar(widgets=[SimpleProgress()], maxval=17).start()
+        for i in range(17):
+            #time.sleep(0.2)
+            pbar.update(i + 1)
+        pbar.finish()
+        
+    '''
+          得到N日均线
+    '''
+    def getKAvg(self,dayNum):
+        code  = self.__code
+        return self.__data.head(dayNum)['close'].sum/dayNum
+        pass
         
 if __name__ == "__main__":
     print "start------"
-    
     oneLine = OneLineStrategy()
-    data = TuShareAdapter.getHistData('300222')
-    print data
-    oneLine.getSectionPrice(data)
+    oneLine.getAreaPrice('3000222')
     

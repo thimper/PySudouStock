@@ -27,10 +27,10 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
     
 class SimpleMainUI(QMainWindow):
-   def __init__(self):
-       self.centralwidget = QtGui.QWidget(self)
-       self.setWindowTitle(_translate("MainWindow", "MainWindow", None))
-       self.syncStockDayBtn = QtGui.QPushButton(self.centralwidget)
+    def __init__(self):
+        self.centralwidget = QtGui.QWidget(self)
+        self.setWindowTitle(_translate("MainWindow", "MainWindow", None))
+        self.syncStockDayBtn = QtGui.QPushButton(self.centralwidget)
 
 
 '''
